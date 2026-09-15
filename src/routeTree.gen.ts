@@ -10,33 +10,108 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ConductorRouteImport } from './routes/conductor'
+import { Route as ConductorIndexRouteImport } from './routes/conductor.index'
+import { Route as ConductorCarteraRouteImport } from './routes/conductor.cartera'
+import { Route as ConductorDemandaRouteImport } from './routes/conductor.demanda'
+import { Route as ConductorDesempenoRouteImport } from './routes/conductor.desempeno'
+import { Route as ConductorSolicitudIdRouteImport } from './routes/conductor.solicitud.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConductorRoute = ConductorRouteImport.update({
+  id: '/conductor',
+  path: '/conductor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConductorIndexRoute = ConductorIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ConductorRoute,
+} as any)
+const ConductorCarteraRoute = ConductorCarteraRouteImport.update({
+  id: '/cartera',
+  path: '/cartera',
+  getParentRoute: () => ConductorRoute,
+} as any)
+const ConductorDemandaRoute = ConductorDemandaRouteImport.update({
+  id: '/demanda',
+  path: '/demanda',
+  getParentRoute: () => ConductorRoute,
+} as any)
+const ConductorDesempenoRoute = ConductorDesempenoRouteImport.update({
+  id: '/desempeno',
+  path: '/desempeno',
+  getParentRoute: () => ConductorRoute,
+} as any)
+const ConductorSolicitudIdRoute = ConductorSolicitudIdRouteImport.update({
+  id: '/solicitud/$id',
+  path: '/solicitud/$id',
+  getParentRoute: () => ConductorRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/conductor': typeof ConductorRouteWithChildren
+  '/conductor/cartera': typeof ConductorCarteraRoute
+  '/conductor/demanda': typeof ConductorDemandaRoute
+  '/conductor/desempeno': typeof ConductorDesempenoRoute
+  '/conductor/': typeof ConductorIndexRoute
+  '/conductor/solicitud/$id': typeof ConductorSolicitudIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/conductor/cartera': typeof ConductorCarteraRoute
+  '/conductor/demanda': typeof ConductorDemandaRoute
+  '/conductor/desempeno': typeof ConductorDesempenoRoute
+  '/conductor': typeof ConductorIndexRoute
+  '/conductor/solicitud/$id': typeof ConductorSolicitudIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/conductor': typeof ConductorRouteWithChildren
+  '/conductor/cartera': typeof ConductorCarteraRoute
+  '/conductor/demanda': typeof ConductorDemandaRoute
+  '/conductor/desempeno': typeof ConductorDesempenoRoute
+  '/conductor/': typeof ConductorIndexRoute
+  '/conductor/solicitud/$id': typeof ConductorSolicitudIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/conductor'
+    | '/conductor/cartera'
+    | '/conductor/demanda'
+    | '/conductor/desempeno'
+    | '/conductor/'
+    | '/conductor/solicitud/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/conductor/cartera'
+    | '/conductor/demanda'
+    | '/conductor/desempeno'
+    | '/conductor'
+    | '/conductor/solicitud/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/conductor'
+    | '/conductor/cartera'
+    | '/conductor/demanda'
+    | '/conductor/desempeno'
+    | '/conductor/'
+    | '/conductor/solicitud/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ConductorRoute: typeof ConductorRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +123,74 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/conductor': {
+      id: '/conductor'
+      path: '/conductor'
+      fullPath: '/conductor'
+      preLoaderRoute: typeof ConductorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conductor/': {
+      id: '/conductor/'
+      path: '/'
+      fullPath: '/conductor/'
+      preLoaderRoute: typeof ConductorIndexRouteImport
+      parentRoute: typeof ConductorRoute
+    }
+    '/conductor/cartera': {
+      id: '/conductor/cartera'
+      path: '/cartera'
+      fullPath: '/conductor/cartera'
+      preLoaderRoute: typeof ConductorCarteraRouteImport
+      parentRoute: typeof ConductorRoute
+    }
+    '/conductor/demanda': {
+      id: '/conductor/demanda'
+      path: '/demanda'
+      fullPath: '/conductor/demanda'
+      preLoaderRoute: typeof ConductorDemandaRouteImport
+      parentRoute: typeof ConductorRoute
+    }
+    '/conductor/desempeno': {
+      id: '/conductor/desempeno'
+      path: '/desempeno'
+      fullPath: '/conductor/desempeno'
+      preLoaderRoute: typeof ConductorDesempenoRouteImport
+      parentRoute: typeof ConductorRoute
+    }
+    '/conductor/solicitud/$id': {
+      id: '/conductor/solicitud/$id'
+      path: '/solicitud/$id'
+      fullPath: '/conductor/solicitud/$id'
+      preLoaderRoute: typeof ConductorSolicitudIdRouteImport
+      parentRoute: typeof ConductorRoute
+    }
   }
 }
 
+interface ConductorRouteChildren {
+  ConductorCarteraRoute: typeof ConductorCarteraRoute
+  ConductorDemandaRoute: typeof ConductorDemandaRoute
+  ConductorDesempenoRoute: typeof ConductorDesempenoRoute
+  ConductorIndexRoute: typeof ConductorIndexRoute
+  ConductorSolicitudIdRoute: typeof ConductorSolicitudIdRoute
+}
+
+const ConductorRouteChildren: ConductorRouteChildren = {
+  ConductorCarteraRoute: ConductorCarteraRoute,
+  ConductorDemandaRoute: ConductorDemandaRoute,
+  ConductorDesempenoRoute: ConductorDesempenoRoute,
+  ConductorIndexRoute: ConductorIndexRoute,
+  ConductorSolicitudIdRoute: ConductorSolicitudIdRoute,
+}
+
+const ConductorRouteWithChildren = ConductorRoute._addFileChildren(
+  ConductorRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ConductorRoute: ConductorRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
