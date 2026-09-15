@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
-  ArrowRight,
   Check,
   Crosshair,
   Loader2,
   MapPin as MapPinIcon,
+  MessageCircle,
   Minus,
   Phone,
   Plus,
@@ -230,7 +230,7 @@ function PasajeroHome() {
                 </div>
                 <div className="mt-4 flex gap-2">
                   <button className="btn-soft">
-                    <MessageCircleIcon /> Chat
+                    <MessageCircle className="size-4" /> Chat
                   </button>
                   <button className="btn-soft">
                     <Phone className="size-4" /> Llamar
@@ -249,10 +249,6 @@ function PasajeroHome() {
       </div>
     </AppShell>
   );
-}
-
-function MessageCircleIcon() {
-  return <ArrowRight className="size-4" />;
 }
 
 function Fila({
