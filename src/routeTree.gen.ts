@@ -10,33 +10,203 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as ConductorRouteImport } from './routes/conductor'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminConductoresRouteImport } from './routes/admin.conductores'
+import { Route as AdminConfiguracionRouteImport } from './routes/admin.configuracion'
+import { Route as AdminFinanzasRouteImport } from './routes/admin.finanzas'
+import { Route as AdminMapaRouteImport } from './routes/admin.mapa'
+import { Route as AdminPasajerosRouteImport } from './routes/admin.pasajeros'
+import { Route as AdminViajesRouteImport } from './routes/admin.viajes'
+import { Route as ConductorIndexRouteImport } from './routes/conductor.index'
+import { Route as ConductorCarteraRouteImport } from './routes/conductor.cartera'
+import { Route as ConductorDemandaRouteImport } from './routes/conductor.demanda'
+import { Route as ConductorDesempenoRouteImport } from './routes/conductor.desempeno'
+import { Route as ConductorSolicitudIdRouteImport } from './routes/conductor.solicitud.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConductorRoute = ConductorRouteImport.update({
+  id: '/conductor',
+  path: '/conductor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminConductoresRoute = AdminConductoresRouteImport.update({
+  id: '/conductores',
+  path: '/conductores',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminConfiguracionRoute = AdminConfiguracionRouteImport.update({
+  id: '/configuracion',
+  path: '/configuracion',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminFinanzasRoute = AdminFinanzasRouteImport.update({
+  id: '/finanzas',
+  path: '/finanzas',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminMapaRoute = AdminMapaRouteImport.update({
+  id: '/mapa',
+  path: '/mapa',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPasajerosRoute = AdminPasajerosRouteImport.update({
+  id: '/pasajeros',
+  path: '/pasajeros',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminViajesRoute = AdminViajesRouteImport.update({
+  id: '/viajes',
+  path: '/viajes',
+  getParentRoute: () => AdminRoute,
+} as any)
+const ConductorIndexRoute = ConductorIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ConductorRoute,
+} as any)
+const ConductorCarteraRoute = ConductorCarteraRouteImport.update({
+  id: '/cartera',
+  path: '/cartera',
+  getParentRoute: () => ConductorRoute,
+} as any)
+const ConductorDemandaRoute = ConductorDemandaRouteImport.update({
+  id: '/demanda',
+  path: '/demanda',
+  getParentRoute: () => ConductorRoute,
+} as any)
+const ConductorDesempenoRoute = ConductorDesempenoRouteImport.update({
+  id: '/desempeno',
+  path: '/desempeno',
+  getParentRoute: () => ConductorRoute,
+} as any)
+const ConductorSolicitudIdRoute = ConductorSolicitudIdRouteImport.update({
+  id: '/solicitud/$id',
+  path: '/solicitud/$id',
+  getParentRoute: () => ConductorRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/conductor': typeof ConductorRouteWithChildren
+  '/admin/conductores': typeof AdminConductoresRoute
+  '/admin/configuracion': typeof AdminConfiguracionRoute
+  '/admin/finanzas': typeof AdminFinanzasRoute
+  '/admin/mapa': typeof AdminMapaRoute
+  '/admin/pasajeros': typeof AdminPasajerosRoute
+  '/admin/viajes': typeof AdminViajesRoute
+  '/conductor/cartera': typeof ConductorCarteraRoute
+  '/conductor/demanda': typeof ConductorDemandaRoute
+  '/conductor/desempeno': typeof ConductorDesempenoRoute
+  '/admin/': typeof AdminIndexRoute
+  '/conductor/': typeof ConductorIndexRoute
+  '/conductor/solicitud/$id': typeof ConductorSolicitudIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin/conductores': typeof AdminConductoresRoute
+  '/admin/configuracion': typeof AdminConfiguracionRoute
+  '/admin/finanzas': typeof AdminFinanzasRoute
+  '/admin/mapa': typeof AdminMapaRoute
+  '/admin/pasajeros': typeof AdminPasajerosRoute
+  '/admin/viajes': typeof AdminViajesRoute
+  '/conductor/cartera': typeof ConductorCarteraRoute
+  '/conductor/demanda': typeof ConductorDemandaRoute
+  '/conductor/desempeno': typeof ConductorDesempenoRoute
+  '/admin': typeof AdminIndexRoute
+  '/conductor': typeof ConductorIndexRoute
+  '/conductor/solicitud/$id': typeof ConductorSolicitudIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/conductor': typeof ConductorRouteWithChildren
+  '/admin/conductores': typeof AdminConductoresRoute
+  '/admin/configuracion': typeof AdminConfiguracionRoute
+  '/admin/finanzas': typeof AdminFinanzasRoute
+  '/admin/mapa': typeof AdminMapaRoute
+  '/admin/pasajeros': typeof AdminPasajerosRoute
+  '/admin/viajes': typeof AdminViajesRoute
+  '/conductor/cartera': typeof ConductorCarteraRoute
+  '/conductor/demanda': typeof ConductorDemandaRoute
+  '/conductor/desempeno': typeof ConductorDesempenoRoute
+  '/admin/': typeof AdminIndexRoute
+  '/conductor/': typeof ConductorIndexRoute
+  '/conductor/solicitud/$id': typeof ConductorSolicitudIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/conductor'
+    | '/admin/conductores'
+    | '/admin/configuracion'
+    | '/admin/finanzas'
+    | '/admin/mapa'
+    | '/admin/pasajeros'
+    | '/admin/viajes'
+    | '/conductor/cartera'
+    | '/conductor/demanda'
+    | '/conductor/desempeno'
+    | '/admin/'
+    | '/conductor/'
+    | '/conductor/solicitud/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/admin/conductores'
+    | '/admin/configuracion'
+    | '/admin/finanzas'
+    | '/admin/mapa'
+    | '/admin/pasajeros'
+    | '/admin/viajes'
+    | '/conductor/cartera'
+    | '/conductor/demanda'
+    | '/conductor/desempeno'
+    | '/admin'
+    | '/conductor'
+    | '/conductor/solicitud/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/conductor'
+    | '/admin/conductores'
+    | '/admin/configuracion'
+    | '/admin/finanzas'
+    | '/admin/mapa'
+    | '/admin/pasajeros'
+    | '/admin/viajes'
+    | '/conductor/cartera'
+    | '/conductor/demanda'
+    | '/conductor/desempeno'
+    | '/admin/'
+    | '/conductor/'
+    | '/conductor/solicitud/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  ConductorRoute: typeof ConductorRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +218,153 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conductor': {
+      id: '/conductor'
+      path: '/conductor'
+      fullPath: '/conductor'
+      preLoaderRoute: typeof ConductorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/conductores': {
+      id: '/admin/conductores'
+      path: '/conductores'
+      fullPath: '/admin/conductores'
+      preLoaderRoute: typeof AdminConductoresRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/configuracion': {
+      id: '/admin/configuracion'
+      path: '/configuracion'
+      fullPath: '/admin/configuracion'
+      preLoaderRoute: typeof AdminConfiguracionRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/finanzas': {
+      id: '/admin/finanzas'
+      path: '/finanzas'
+      fullPath: '/admin/finanzas'
+      preLoaderRoute: typeof AdminFinanzasRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/mapa': {
+      id: '/admin/mapa'
+      path: '/mapa'
+      fullPath: '/admin/mapa'
+      preLoaderRoute: typeof AdminMapaRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/pasajeros': {
+      id: '/admin/pasajeros'
+      path: '/pasajeros'
+      fullPath: '/admin/pasajeros'
+      preLoaderRoute: typeof AdminPasajerosRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/viajes': {
+      id: '/admin/viajes'
+      path: '/viajes'
+      fullPath: '/admin/viajes'
+      preLoaderRoute: typeof AdminViajesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/conductor/': {
+      id: '/conductor/'
+      path: '/'
+      fullPath: '/conductor/'
+      preLoaderRoute: typeof ConductorIndexRouteImport
+      parentRoute: typeof ConductorRoute
+    }
+    '/conductor/cartera': {
+      id: '/conductor/cartera'
+      path: '/cartera'
+      fullPath: '/conductor/cartera'
+      preLoaderRoute: typeof ConductorCarteraRouteImport
+      parentRoute: typeof ConductorRoute
+    }
+    '/conductor/demanda': {
+      id: '/conductor/demanda'
+      path: '/demanda'
+      fullPath: '/conductor/demanda'
+      preLoaderRoute: typeof ConductorDemandaRouteImport
+      parentRoute: typeof ConductorRoute
+    }
+    '/conductor/desempeno': {
+      id: '/conductor/desempeno'
+      path: '/desempeno'
+      fullPath: '/conductor/desempeno'
+      preLoaderRoute: typeof ConductorDesempenoRouteImport
+      parentRoute: typeof ConductorRoute
+    }
+    '/conductor/solicitud/$id': {
+      id: '/conductor/solicitud/$id'
+      path: '/solicitud/$id'
+      fullPath: '/conductor/solicitud/$id'
+      preLoaderRoute: typeof ConductorSolicitudIdRouteImport
+      parentRoute: typeof ConductorRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminConductoresRoute: typeof AdminConductoresRoute
+  AdminConfiguracionRoute: typeof AdminConfiguracionRoute
+  AdminFinanzasRoute: typeof AdminFinanzasRoute
+  AdminMapaRoute: typeof AdminMapaRoute
+  AdminPasajerosRoute: typeof AdminPasajerosRoute
+  AdminViajesRoute: typeof AdminViajesRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminConductoresRoute: AdminConductoresRoute,
+  AdminConfiguracionRoute: AdminConfiguracionRoute,
+  AdminFinanzasRoute: AdminFinanzasRoute,
+  AdminMapaRoute: AdminMapaRoute,
+  AdminPasajerosRoute: AdminPasajerosRoute,
+  AdminViajesRoute: AdminViajesRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface ConductorRouteChildren {
+  ConductorCarteraRoute: typeof ConductorCarteraRoute
+  ConductorDemandaRoute: typeof ConductorDemandaRoute
+  ConductorDesempenoRoute: typeof ConductorDesempenoRoute
+  ConductorIndexRoute: typeof ConductorIndexRoute
+  ConductorSolicitudIdRoute: typeof ConductorSolicitudIdRoute
+}
+
+const ConductorRouteChildren: ConductorRouteChildren = {
+  ConductorCarteraRoute: ConductorCarteraRoute,
+  ConductorDemandaRoute: ConductorDemandaRoute,
+  ConductorDesempenoRoute: ConductorDesempenoRoute,
+  ConductorIndexRoute: ConductorIndexRoute,
+  ConductorSolicitudIdRoute: ConductorSolicitudIdRoute,
+}
+
+const ConductorRouteWithChildren = ConductorRoute._addFileChildren(
+  ConductorRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  ConductorRoute: ConductorRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
